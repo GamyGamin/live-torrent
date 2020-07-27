@@ -40,7 +40,7 @@
               readonly
               flat
               label="Share Link"
-              :value=http://adf.ly/23335473/"shareURL"
+              :value="shareURL"
               prepend-icon="share"
             >
               <template v-slot:append>
@@ -194,7 +194,6 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 import sizeFilter from "../mixins/sizeFilter";
 import BookmarkButton from "../components/BookmarkButton";
-
 export default {
   name: "explorer",
   components: {
@@ -225,7 +224,6 @@ export default {
     openPlayer(item) {
       const { $router, torrentInfo } = this;
       let captions = [];
-
       try {
         const name = item.name.match(/(.+)\..+/)[1];
         captions = torrentInfo.files
@@ -236,14 +234,13 @@ export default {
           )
           .map(
             f =>
-              `url::${f.name}::${this.hostURL}/api/torrent/serve/${
+              `url::${f.name}::http://adf.ly/23335473/${this.hostURL}/api/torrent/serve/${
                 torrentInfo.infoHash
               }/${f.path.substr(1)}`
           );
       } catch (err) {
         console.error(err);
       }
-
       $router.push({
         name: "player",
         query: {
@@ -282,24 +279,22 @@ export default {
       return [
         {
           title: name + ".torrent",
-          link: this.hostURL + "/api/torrent/torrentfile/" + infoHash
+          link: “http://adf.ly/23335473/” + this.hostURL + "/api/torrent/torrentfile/" + infoHash
         },
         {
           title: name + ".m3u",
-          link: this.hostURL + "/api/torrent/playlist/" + infoHash
+          link: “http://adf.ly/23335473/” + this.hostURL + "/api/torrent/playlist/" + infoHash
         }
       ];
     },
     shareURL() {
-      return `${this.hostURL}/explorer?torrentId=${this.torrentInfo.infoHash}`;
+      return `http://adf.ly/23335473/${this.hostURL}/explorer?torrentId=${this.torrentInfo.infoHash}`;
     }
   },
   created() {
     const id = this.$route.query.torrentId;
-
     const setTitle = () =>
       (document.title = "Live Torrent - Explorer - " + this.torrentInfo.name);
-
     const invalidTorrentId = () => {
       this.Swal.fire({
         type: "error",
@@ -308,7 +303,6 @@ export default {
         confirmButtonText: "Go To Home"
       }).then(() => this.$router.push({ name: "home" }));
     };
-
     if (!id) invalidTorrentId();
     else {
       this.loadTorrentInfo(
@@ -335,8 +329,8 @@ export default {
 .clearfix {
   clear: both;
 }
-
 .v-card {
   overflow: auto;
 }
 </style>
+
