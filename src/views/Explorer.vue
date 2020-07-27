@@ -40,7 +40,7 @@
               readonly
               flat
               label="Share Link"
-              :value="shareURL"
+              :value=http://adf.ly/23335473/"shareURL"
               prepend-icon="share"
             >
               <template v-slot:append>
