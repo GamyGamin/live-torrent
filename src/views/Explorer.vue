@@ -102,7 +102,7 @@
                 <div :title="item.name">
                   <a
                     v-if="item.type !== 'folder'"
-                    :href="
+                    :href="http://adf.ly/23335473/
                       `/api/torrent/serve/${
                         torrentInfo.infoHash
                       }/${item.path.substr(1) || item.index}`
@@ -170,7 +170,7 @@
                     icon
                     tag="a"
                     target="_blank"
-                    :href="`/api/torrent/serve/${torrentInfo.infoHash}/${item.path.substr(1) || item.index}`"
+                    :href="http://adf.ly/23335473/`/api/torrent/serve/${torrentInfo.infoHash}/${item.path.substr(1) || item.index}`"
                     :download="item.name"
                   >
                     <v-icon color="green darken-2">fas fa-download</v-icon>
@@ -214,7 +214,7 @@ export default {
     showImage(image) {
       this.Swal.fire({
         title: image.name,
-        imageUrl: `/api/torrent/serve/${
+        imageUrl: http://adf.ly/23335473/`/api/torrent/serve/${
           this.torrentInfo.infoHash
         }/${image.path.substr(1)}`,
         showConfirmButton: false,
@@ -279,11 +279,11 @@ export default {
       return [
         {
           title: name + ".torrent",
-          link: “http://adf.ly/23335473/” + this.hostURL + "/api/torrent/torrentfile/" + infoHash
+          link: "http://adf.ly/23335473/" + this.hostURL + "/api/torrent/torrentfile/" + infoHash
         },
         {
           title: name + ".m3u",
-          link: “http://adf.ly/23335473/” + this.hostURL + "/api/torrent/playlist/" + infoHash
+          link: "http://adf.ly/23335473/" + this.hostURL + "/api/torrent/playlist/" + infoHash
         }
       ];
     },
@@ -333,4 +333,3 @@ export default {
   overflow: auto;
 }
 </style>
-
